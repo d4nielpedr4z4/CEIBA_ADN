@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<testienda>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ceiba.Application",
+            "projectName": "testienda",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

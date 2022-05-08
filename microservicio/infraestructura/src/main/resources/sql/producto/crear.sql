@@ -1,0 +1,1 @@
+insert into producto (id, nombre, referencia, precio_compra, iva_compra, porcentaje_ganancia, precio_venta, iva_venta, cantidad_disponible, tipo) values (:id, :nombre, :referencia, :precioCompra, :ivaCompra, :porcentajeGanancia, :precioVenta, :ivaVenta, :cantidadDisponible, :tipo)

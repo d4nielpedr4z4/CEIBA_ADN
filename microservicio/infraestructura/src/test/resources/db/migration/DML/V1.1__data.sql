@@ -1,0 +1,1 @@
+insert into producto(id, nombre, referencia, precio_compra, iva_compra, porcentaje_ganancia, precio_venta, iva_venta, cantidad_disponible, tipo) values(1, 'test', 'ZIVA', 26550, 5044.5, 10, 29205, 34753.95, 10, 'GRAVADO');
