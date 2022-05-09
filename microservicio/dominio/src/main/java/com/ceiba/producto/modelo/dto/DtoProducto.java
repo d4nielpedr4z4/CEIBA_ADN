@@ -14,7 +14,7 @@ public class DtoProducto {
     private Integer porcentajeGanancia;
     private Float precioVenta;
     private Float ivaVenta;
-    private Integer cantidadDisponible;
+    private Integer cantidad;
     private String tipo;
 
 }
