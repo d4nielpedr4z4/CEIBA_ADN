@@ -1,5 +1,8 @@
 package com.ceiba.producto.servicio.testdatabuilder;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 import com.ceiba.producto.modelo.entidad.Producto;
 
 public class ProductoTestDataBuilder {
@@ -14,6 +17,7 @@ public class ProductoTestDataBuilder {
     private Float ivaVenta;
     private Integer cantidadDisponible;
     private String tipo;
+    private LocalDate fecha;
 
     public ProductoTestDataBuilder() {
         id = 10L;
@@ -26,6 +30,7 @@ public class ProductoTestDataBuilder {
         ivaVenta = 34753.95F;
         cantidadDisponible = 10;
         tipo = "GRAVADO";
+        fecha = LocalDate.of(2022, Month.MAY, 9);
 
     }
 
@@ -79,7 +84,12 @@ public class ProductoTestDataBuilder {
         return this;
     }
 
+    public ProductoTestDataBuilder conFechaCreacion(LocalDate fechaCreacion) {
+        this.fecha = fechaCreacion;
+        return this;
+    }
+
     public Producto build() {
-        return new Producto(id, nombre, referencia, precioCompra, ivaCompra, porcentajeGanancia, precioVenta, ivaVenta, cantidadDisponible, tipo);
+        return new Producto(id, nombre, referencia, precioCompra, ivaCompra, porcentajeGanancia, precioVenta, ivaVenta, cantidadDisponible, tipo, fecha);
     }
 }

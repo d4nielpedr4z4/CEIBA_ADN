@@ -19,6 +19,9 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ComandoControladorProducto.class)
 @ContextConfiguration(classes = ApplicationMock.class)
@@ -35,7 +38,7 @@ class ComandoControladorProductoTest {
     @DisplayName("Deberia crear un producto")
     void deberiaCrearUnProducto() throws Exception {
         // arrange
-        ComandoProducto producto = new ComandoProductoTestDataBuilder().build();
+        ComandoProducto producto = new ComandoProductoTestDataBuilder().conFecha(LocalDate.of(2022, Month.MAY, 9)).build();
         // act - assert
         mocMvc.perform(post("/productos")
                 .contentType(MediaType.APPLICATION_JSON)

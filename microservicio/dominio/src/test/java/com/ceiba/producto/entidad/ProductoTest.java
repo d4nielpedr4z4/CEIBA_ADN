@@ -66,19 +66,7 @@ public class ProductoTest {
                 ExcepcionValorObligatorio.class, "Se debe ingresar la referencia del producto");
     }
 
-/*     @Test
-    void deberiaFallarSinPrecioCompraDeProducto() {
-
-        // Arrange
-        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conPrecioCompra(null);
-        // act-assert
-        BasePrueba.assertThrows(() -> {
-            productoTestDataBuilder.build();
-        },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el precio de compra del producto");
-    } */
-
-/*     @Test
+    @Test
     void deberiaFallarSinIvaCompraDeProducto() {
 
         // Arrange
@@ -88,22 +76,9 @@ public class ProductoTest {
             productoTestDataBuilder.build();
         },
                 ExcepcionValorObligatorio.class, "Se debe ingresar el iva de compra del producto");
-    } */
+    }
 
-/*     @Test
-    void deberiaFallarSinPorcentajeGananciaDeProducto() {
-
-        // Arrange
-        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conPorcentajeGanancia(null);
-        // act-assert
-        
-        BasePrueba.assertThrows(() -> {
-            productoTestDataBuilder.build();
-        },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el porcentaje de ganancia del producto");
-    } */
-
-/*     @Test
+    @Test
     void deberiaFallarSinPrecioVentaDeProducto() {
 
         // Arrange
@@ -113,9 +88,9 @@ public class ProductoTest {
             productoTestDataBuilder.build();
         },
                 ExcepcionValorObligatorio.class, "Se debe ingresar el precio de venta del producto");
-    } */
+    }
 
-/*     @Test
+    @Test
     void deberiaFallarSinIvaVentaDeProducto() {
 
         // Arrange
@@ -125,7 +100,7 @@ public class ProductoTest {
             productoTestDataBuilder.build();
         },
                 ExcepcionValorObligatorio.class, "Se debe ingresar el iva de venta del producto");
-    } */
+    }
 
     @Test
     void deberiaFallarSinCantidadDisponibleDeProducto() {
@@ -139,16 +114,16 @@ public class ProductoTest {
                 ExcepcionValorObligatorio.class, "Se debe ingresar la cantidad disponible del producto");
     }
 
-/*     @Test
-    void deberiaFallarSinTipoDeProducto() {
+    @Test
+    void deberiaFallarSinFecha() {
 
         // Arrange
-        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conTipo(null);
+        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conFechaCreacion(null);
         // act-assert
         BasePrueba.assertThrows(() -> {
             productoTestDataBuilder.build();
         },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el tipo de producto");
-    } */
+                ExcepcionValorObligatorio.class, "Se debe ingresar la fecha");
+    }
 
 }

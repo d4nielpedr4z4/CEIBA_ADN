@@ -1,5 +1,7 @@
 package com.ceiba.producto.servicio.testdatabuilder;
 
+import java.time.LocalDate;
+
 import com.ceiba.producto.comando.ComandoProducto;
 
 public class ComandoProductoTestDataBuilder {
@@ -11,6 +13,7 @@ public class ComandoProductoTestDataBuilder {
     private Integer porcentajeGanancia;
     private Integer cantidadDisponible;
     private String tipo;
+    private LocalDate fecha;
 
     public ComandoProductoTestDataBuilder() {
         id = 10L;
@@ -20,6 +23,7 @@ public class ComandoProductoTestDataBuilder {
         porcentajeGanancia = 10;
         cantidadDisponible = 10;
         tipo = "GRAVADO";
+        fecha = LocalDate.now();
 
     }
 
@@ -58,8 +62,13 @@ public class ComandoProductoTestDataBuilder {
         return this;
     }
 
+    public ComandoProductoTestDataBuilder conFecha(LocalDate fecha) {
+        this.fecha = fecha;
+        return this;
+    }
+
     public ComandoProducto build() {
         return new ComandoProducto(id, nombre, referencia, precioCompra, porcentajeGanancia,
-                cantidadDisponible, tipo);
+                cantidadDisponible, tipo, fecha);
     }
 }

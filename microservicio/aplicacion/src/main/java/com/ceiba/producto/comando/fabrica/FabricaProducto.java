@@ -19,7 +19,8 @@ public class FabricaProducto {
                 precioVenta,
                 ivaVenta,
                 comandoProducto.getCantidadDisponible(),
-                comandoProducto.getTipo());
+                comandoProducto.getTipo(),
+                comandoProducto.getFecha());
     }
 
 }

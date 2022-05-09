@@ -29,10 +29,8 @@ public class ManejadorActualizarProducto implements ManejadorComando<ComandoProd
     }
 
     public void ejecutar(ComandoProducto comandoProducto) {
-        Float ivaCompra = this.servicioCalcularIvaProducto.calcularIVA(comandoProducto.getPrecioCompra(),
-                comandoProducto.getTipo());
-        Float precioVenta = this.servicioCalcularPrecioVentaProducto.calcularPrecioVentaProducto(
-                comandoProducto.getPrecioCompra(), comandoProducto.getPorcentajeGanancia());
+        Float ivaCompra = this.servicioCalcularIvaProducto.calcularIVA(comandoProducto.getPrecioCompra(), comandoProducto.getTipo());
+        Float precioVenta = this.servicioCalcularPrecioVentaProducto.calcularPrecioVentaProducto(comandoProducto.getPrecioCompra(), comandoProducto.getPorcentajeGanancia());
         Float ivaVenta = this.servicioCalcularIvaProducto.calcularIVA(precioVenta, comandoProducto.getTipo());
         Producto producto = this.fabricaProducto.crear(comandoProducto, ivaCompra, precioVenta, ivaVenta);
         this.servicioActualizarProducto.ejecutar(producto);

@@ -2,6 +2,8 @@ package com.ceiba.producto.servicio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.ceiba.BasePrueba;
+import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
 
@@ -32,5 +34,16 @@ public class ServicioValidarProductoExluidoTest {
         boolean excluido = servicioValidarProductoExluido.validarProductoExcluido(producto.getTipo());
         //assert
         assertEquals(false, excluido);
+    }
+
+    @Test
+    @DisplayName("Deberia lanzar una exepcion cuando se intenta validar excluido con tipo null")
+    void deberiaLanzarUnaExepcionCuandoElTipoProductoEsNull() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conTipo(null).build();
+        ServicioValidarProductoExluido servicioValidarProductoExluido = new ServicioValidarProductoExluido();
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioValidarProductoExluido.validarProductoExcluido(producto.getTipo()), ExcepcionValorObligatorio.class,
+                "Se debe ingresar el tipo de producto");
     }
 }
