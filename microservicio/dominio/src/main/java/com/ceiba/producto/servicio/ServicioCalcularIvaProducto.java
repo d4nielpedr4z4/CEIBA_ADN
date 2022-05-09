@@ -4,7 +4,7 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 public class ServicioCalcularIvaProducto {
 
-    private final Float IVA = 0.19F;
+    private static final Float IVA = 0.19F;
     private static final String SE_DEBE_INGRESAR_EL_PRECIO_DE_COMPRA_DEL_PRODUCTO = "Se debe ingresar el precio de compra del producto";
     private ServicioValidarProductoExluido servicioValidarProductoExluido;
 

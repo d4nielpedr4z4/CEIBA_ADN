@@ -4,7 +4,7 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 public class ServicioValidarProductoExluido {
 
-    private final String EXCLUIDO = "EXCLUIDO";
+    private static final String EXCLUIDO = "EXCLUIDO";
     private static final String SE_DEBE_INGRESAR_EL_TIPO_DE_PRODUCTO = "Se debe ingresar el tipo de producto";
     
 
