@@ -16,10 +16,10 @@ public class ServicioCalcularIvaProductoTest {
     @DisplayName("Deberia validar el calculo del iva para producto no excluido")
     void deberiaValidarCalculoIvaProductoNoExcluido() {
         // arrange
-        Producto producto = new ProductoTestDataBuilder().conTipo("GRAVADO").build();
+        Producto producto = new ProductoTestDataBuilder().conTipo(1).build();
         ServicioValidarProductoExluido servicioValidarProductoExluido = Mockito
                 .mock(ServicioValidarProductoExluido.class);
-        Mockito.when(servicioValidarProductoExluido.validarProductoExcluido(Mockito.anyString())).thenReturn(false);
+        Mockito.when(servicioValidarProductoExluido.validarProductoExcluido(Mockito.anyInt())).thenReturn(false);
         ServicioCalcularIvaProducto servicioCalcularIvaProducto = new ServicioCalcularIvaProducto(
                 servicioValidarProductoExluido);
         // act
@@ -32,10 +32,10 @@ public class ServicioCalcularIvaProductoTest {
     @DisplayName("Deberia validar el calculo del iva para producto excluido")
     void deberiaValidarCalculoIvaProductoExcluido() {
         // arrange
-        Producto producto = new ProductoTestDataBuilder().conTipo("EXCLUIDO").build();
+        Producto producto = new ProductoTestDataBuilder().conTipo(2).build();
         ServicioValidarProductoExluido servicioValidarProductoExluido = Mockito
                 .mock(ServicioValidarProductoExluido.class);
-        Mockito.when(servicioValidarProductoExluido.validarProductoExcluido(Mockito.anyString())).thenReturn(true);
+        Mockito.when(servicioValidarProductoExluido.validarProductoExcluido(Mockito.anyInt())).thenReturn(true);
         ServicioCalcularIvaProducto servicioCalcularIvaProducto = new ServicioCalcularIvaProducto(
                 servicioValidarProductoExluido);
         // act
@@ -51,7 +51,7 @@ public class ServicioCalcularIvaProductoTest {
         Producto producto = new ProductoTestDataBuilder().conPrecioCompra(null).build();
         ServicioValidarProductoExluido servicioValidarProductoExluido = Mockito
                 .mock(ServicioValidarProductoExluido.class);
-        Mockito.when(servicioValidarProductoExluido.validarProductoExcluido(Mockito.anyString())).thenReturn(false);
+        Mockito.when(servicioValidarProductoExluido.validarProductoExcluido(Mockito.anyInt())).thenReturn(false);
         ServicioCalcularIvaProducto servicioCalcularIvaProducto = new ServicioCalcularIvaProducto(
                 servicioValidarProductoExluido);
         // act - assert

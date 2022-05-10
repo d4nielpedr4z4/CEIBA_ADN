@@ -27,11 +27,11 @@ public class Producto {
     private Float precioVenta;
     private Float ivaVenta;
     private Integer cantidadDisponible;
-    private String tipo;
+    private Integer tipo;
     private LocalDate fechaCreacion;
 
     public Producto(Long id, String nombre, String referencia, Float precioCompra, Float ivaCompra,
-            Integer porcentajeGanancia, Float precioVenta, Float ivaVenta, Integer cantidadDisponible, String tipo, LocalDate fecha) {
+            Integer porcentajeGanancia, Float precioVenta, Float ivaVenta, Integer cantidadDisponible, Integer tipo, LocalDate fecha) {
 
         validarObligatorio(id, SE_DEBE_INGRESAR_EL_ID_DEL_PRODUCTO);
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE_DEL_PRODUCTO);

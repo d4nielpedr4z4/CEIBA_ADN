@@ -19,6 +19,6 @@ public class ComandoProducto{
     private Float precioCompra;
     private Integer porcentajeGanancia;
     private Integer cantidadDisponible;
-    private String tipo;
+    private Integer tipo;
     private LocalDate fecha;
 }

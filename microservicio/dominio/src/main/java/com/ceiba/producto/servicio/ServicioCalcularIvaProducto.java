@@ -12,7 +12,7 @@ public class ServicioCalcularIvaProducto {
         this.servicioValidarProductoExluido = servicioValidarProductoExluido;
     }
 
-    public Float calcularIVA(Float precioProducto, String tipoProducto) {
+    public Float calcularIVA(Float precioProducto, Integer tipoProducto) {
         validarObligatorio(precioProducto, SE_DEBE_INGRESAR_EL_PRECIO_DE_COMPRA_DEL_PRODUCTO);
         boolean excluido = this.servicioValidarProductoExluido.validarProductoExcluido(tipoProducto);
         return excluido ? 0 : (precioProducto * IVA);

@@ -12,7 +12,7 @@ public class ComandoProductoTestDataBuilder {
     private Float precioCompra;
     private Integer porcentajeGanancia;
     private Integer cantidadDisponible;
-    private String tipo;
+    private Integer tipo;
     private LocalDate fecha;
 
     public ComandoProductoTestDataBuilder() {
@@ -22,7 +22,7 @@ public class ComandoProductoTestDataBuilder {
         precioCompra = 26550F;
         porcentajeGanancia = 10;
         cantidadDisponible = 10;
-        tipo = "GRAVADO";
+        tipo = 1;
         fecha = LocalDate.now();
 
     }
@@ -57,7 +57,7 @@ public class ComandoProductoTestDataBuilder {
         return this;
     }
 
-    public ComandoProductoTestDataBuilder conTipo(String tipo) {
+    public ComandoProductoTestDataBuilder conTipo(Integer tipo) {
         this.tipo = tipo;
         return this;
     }

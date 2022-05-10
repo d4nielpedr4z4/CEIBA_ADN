@@ -16,7 +16,7 @@ public class ProductoTestDataBuilder {
     private Float precioVenta;
     private Float ivaVenta;
     private Integer cantidadDisponible;
-    private String tipo;
+    private Integer tipo;
     private LocalDate fecha;
 
     public ProductoTestDataBuilder() {
@@ -29,7 +29,7 @@ public class ProductoTestDataBuilder {
         precioVenta = 29500F;
         ivaVenta = 34753.95F;
         cantidadDisponible = 10;
-        tipo = "GRAVADO";
+        tipo = 1;
         fecha = LocalDate.of(2022, Month.MAY, 9);
 
     }
@@ -79,7 +79,7 @@ public class ProductoTestDataBuilder {
         return this;
     }
 
-    public ProductoTestDataBuilder conTipo(String tipo) {
+    public ProductoTestDataBuilder conTipo(Integer tipo) {
         this.tipo = tipo;
         return this;
     }

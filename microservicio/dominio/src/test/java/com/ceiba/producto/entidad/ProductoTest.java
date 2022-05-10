@@ -27,7 +27,7 @@ public class ProductoTest {
         assertEquals(10, producto.getPorcentajeGanancia());
         assertEquals(29500F, producto.getPrecioVenta());
         assertEquals(34753.95F, producto.getIvaVenta());
-        assertEquals("GRAVADO", producto.getTipo());
+        assertEquals(1, producto.getTipo());
     }
 
     @Test

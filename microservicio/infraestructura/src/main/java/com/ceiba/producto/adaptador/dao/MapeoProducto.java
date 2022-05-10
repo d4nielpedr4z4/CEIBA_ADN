@@ -21,7 +21,7 @@ public class MapeoProducto implements RowMapper<DtoProducto>, MapperResult {
         Float precioVenta = resultSet.getFloat("precio_venta");
         Float ivaVenta = resultSet.getFloat("iva_venta");
         Integer cantidadDisponible = resultSet.getInt("cantidad_disponible");
-        String tipo = resultSet.getString("tipo");
+        Integer tipo = resultSet.getInt("id_tipo");
 
         return new DtoProducto(id, nombre, referencia, precioCompra, ivaCompra, porcentajeGanancia, precioVenta,
                 ivaVenta, cantidadDisponible, tipo);

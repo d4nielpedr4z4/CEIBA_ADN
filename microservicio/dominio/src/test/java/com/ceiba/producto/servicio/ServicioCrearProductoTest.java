@@ -34,7 +34,7 @@ public class ServicioCrearProductoTest {
         // arrange
         Producto producto = new ProductoTestDataBuilder().build();
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
-        Mockito.when(repositorioProducto.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioProducto.existePorId(Mockito.anyLong())).thenReturn(true);
         ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
         // act - assert
         BasePrueba.assertThrows(() -> servicioCrearProducto.ejecutar(producto), ExcepcionDuplicidad.class,

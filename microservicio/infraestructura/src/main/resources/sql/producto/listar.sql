@@ -1,2 +1,2 @@
-select id, nombre, referencia, precio_compra, iva_compra, porcentaje_ganancia, precio_venta, iva_venta, cantidad_disponible, tipo
-from producto
+select producto.id, producto.nombre, referencia, precio_compra, iva_compra, porcentaje_ganancia, precio_venta, iva_venta, cantidad_disponible, id_tipo, tipo.nombre from producto, tipo 
+where producto.id_tipo = tipo.id;

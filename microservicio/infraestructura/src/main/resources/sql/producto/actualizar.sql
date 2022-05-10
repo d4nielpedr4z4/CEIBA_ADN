@@ -7,5 +7,5 @@ set nombre = :nombre,
 	precio_venta = :precioVenta,
 	iva_venta = :ivaVenta,
 	cantidad_disponible = :cantidadDisponible,
-	tipo = :tipo
+	id_tipo = :tipo
 where id = :id
