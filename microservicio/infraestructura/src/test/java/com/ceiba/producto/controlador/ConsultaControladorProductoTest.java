@@ -22,14 +22,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ConsultaControladorProducto.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class ConsultaControladorUsuarioTest {
+class ConsultaControladorProductoTest {
 
     @Autowired
     private MockMvc mocMvc;
 
     @Test
     @DisplayName("Deberia listar productos")
-    void deberiaListarUsuarios() throws Exception {
+    void deberiaListarProductos() throws Exception {
         // arrange
         // act - assert
         mocMvc.perform(get("/productos")
