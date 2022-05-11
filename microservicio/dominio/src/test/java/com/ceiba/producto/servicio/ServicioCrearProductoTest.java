@@ -42,6 +42,19 @@ public class ServicioCrearProductoTest {
     }
 
     @Test
+    @DisplayName("Deberia lanzar una exepcion cuando se valide la existencia del Producto por referencia")
+    void deberiaLanzarUnaExepcionCuandoSeValideLaExistenciaDelProductoPorReferencia() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().build();
+        RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
+        Mockito.when(repositorioProducto.existe(Mockito.anyString())).thenReturn(true);
+        ServicioCrearProducto servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioCrearProducto.ejecutar(producto), ExcepcionDuplicidad.class,
+                "El producto ya se encuentra registrado");
+    }
+
+    @Test
     @DisplayName("Deberia Crear el producto de manera correcta")
     void deberiaCrearElProductoDeManeraCorrecta() {
         // arrange

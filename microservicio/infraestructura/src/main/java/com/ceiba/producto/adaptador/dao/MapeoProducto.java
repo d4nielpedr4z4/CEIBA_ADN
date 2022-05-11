@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.producto.modelo.dto.DtoProducto;
+import com.ceiba.producto.modelo.dto.DtoTipo;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -12,7 +13,7 @@ public class MapeoProducto implements RowMapper<DtoProducto>, MapperResult {
     @Override
     public DtoProducto mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
-        Long id = resultSet.getLong("id");
+        Long id = resultSet.getLong("id_producto");
         String nombre = resultSet.getString("nombre");
         String referencia = resultSet.getString("referencia");
         Float precioCompra = resultSet.getFloat("precio_compra");
@@ -21,10 +22,11 @@ public class MapeoProducto implements RowMapper<DtoProducto>, MapperResult {
         Float precioVenta = resultSet.getFloat("precio_venta");
         Float ivaVenta = resultSet.getFloat("iva_venta");
         Integer cantidadDisponible = resultSet.getInt("cantidad_disponible");
-        Integer tipo = resultSet.getInt("id_tipo");
+        Long idTipo = resultSet.getLong("id_tipo");
+        String nombreTipo = resultSet.getString("nombre_tipo");
 
         return new DtoProducto(id, nombre, referencia, precioCompra, ivaCompra, porcentajeGanancia, precioVenta,
-                ivaVenta, cantidadDisponible, tipo);
+                ivaVenta, cantidadDisponible, new DtoTipo(idTipo, nombreTipo));
     }
 
 }
