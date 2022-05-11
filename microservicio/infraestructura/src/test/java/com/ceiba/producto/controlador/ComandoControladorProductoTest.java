@@ -38,7 +38,7 @@ class ComandoControladorProductoTest {
     @DisplayName("Deberia crear un producto")
     void deberiaCrearUnProducto() throws Exception {
         // arrange
-        ComandoProducto producto = new ComandoProductoTestDataBuilder().conFecha(LocalDate.of(2022, Month.MAY, 9)).build();
+        ComandoProducto producto = new ComandoProductoTestDataBuilder().conFecha(LocalDate.of(2022, Month.MAY, 9)).conReferencia("TEST").build();
         // act - assert
         mocMvc.perform(post("/productos")
                 .contentType(MediaType.APPLICATION_JSON)
