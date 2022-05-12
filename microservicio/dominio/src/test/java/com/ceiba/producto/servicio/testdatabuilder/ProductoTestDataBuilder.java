@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.producto.modelo.entidad.Tipo;
 
 public class ProductoTestDataBuilder {
 
@@ -90,6 +91,6 @@ public class ProductoTestDataBuilder {
     }
 
     public Producto build() {
-        return new Producto(id, nombre, referencia, precioCompra, ivaCompra, porcentajeGanancia, precioVenta, ivaVenta, cantidadDisponible, tipo, fecha);
+        return new Producto(id, nombre, referencia, precioCompra, porcentajeGanancia, cantidadDisponible, new Tipo(tipo), fecha);
     }
 }

@@ -5,7 +5,6 @@ import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
-
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Repository;
 public class RepositorioProductoMysql implements RepositorioProducto {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+    private static final String REFERENCIA = "referencia";
 
     @SqlStatement(namespace="producto", value="crear")
     private static String sqlCrear;
@@ -35,7 +35,20 @@ public class RepositorioProductoMysql implements RepositorioProducto {
 
     @Override
     public void crear(Producto producto) {
-        this.customNamedParameterJdbcTemplate.crear(producto, sqlCrear);
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("id", producto.getId());
+        namedParameters.addValue("nombre", producto.getNombre());
+        namedParameters.addValue(REFERENCIA, producto.getReferencia() );
+        namedParameters.addValue("precioCompra", producto.getPrecioCompra() );
+        namedParameters.addValue("ivaCompra", producto.getIvaCompra() );
+        namedParameters.addValue("porcentajeGanancia", producto.getPorcentajeGanancia() );
+        namedParameters.addValue("precioVenta", producto.getPrecioVenta() );
+        namedParameters.addValue("ivaVenta", producto.getIvaVenta() );
+        namedParameters.addValue("cantidadDisponible", producto.getCantidadDisponible() );
+        namedParameters.addValue("tipo", producto.getTipo().getId() );
+
+        this.customNamedParameterJdbcTemplate.crear(namedParameters, sqlCrear);
     }
 
     @Override
@@ -47,16 +60,29 @@ public class RepositorioProductoMysql implements RepositorioProducto {
     }
 
     @Override
-    public boolean existe(String referencia) {
+    public boolean existe(String ref) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("referencia", referencia);
+        paramSource.addValue(REFERENCIA, ref);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Producto producto) {
-        this.customNamedParameterJdbcTemplate.actualizar(producto, sqlActualizar);
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("id", producto.getId());
+        namedParameters.addValue("nombre", producto.getNombre());
+        namedParameters.addValue(REFERENCIA, producto.getReferencia() );
+        namedParameters.addValue("precioCompra", producto.getPrecioCompra() );
+        namedParameters.addValue("ivaCompra", producto.getIvaCompra() );
+        namedParameters.addValue("porcentajeGanancia", producto.getPorcentajeGanancia() );
+        namedParameters.addValue("precioVenta", producto.getPrecioVenta() );
+        namedParameters.addValue("ivaVenta", producto.getIvaVenta() );
+        namedParameters.addValue("cantidadDisponible", producto.getCantidadDisponible() );
+        namedParameters.addValue("tipo", producto.getTipo().getId() );
+
+        this.customNamedParameterJdbcTemplate.actualizar(namedParameters, sqlActualizar);
     }
 
     @Override

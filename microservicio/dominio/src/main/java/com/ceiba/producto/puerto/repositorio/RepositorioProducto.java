@@ -23,11 +23,11 @@ public interface RepositorioProducto {
     void eliminar(Long id);
 
     /**
-     * Permite validar si existe un producto con un nombre
-     * @param nombre
+     * Permite validar si existe un producto con una referencia
+     * @param referencia
      * @return si existe o no
      */
-    boolean existe(String nombre);
+    boolean existe(String referencia);
 
     /**
      * Permite validar si existe un producto con un nombre excluyendo un id

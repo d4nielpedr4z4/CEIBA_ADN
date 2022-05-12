@@ -1,15 +1,17 @@
 package com.ceiba.producto.entidad;
 
 import com.ceiba.BasePrueba;
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProductoTest {
+class ProductoTest {
 
     @Test
     @DisplayName("Deberia crear correctamente el producto")
@@ -26,8 +28,8 @@ public class ProductoTest {
         assertEquals(5044.5F, producto.getIvaCompra());
         assertEquals(10, producto.getPorcentajeGanancia());
         assertEquals(29500F, producto.getPrecioVenta());
-        assertEquals(34753.95F, producto.getIvaVenta());
-        assertEquals(1, producto.getTipo());
+        assertEquals(5605F, producto.getIvaVenta());
+        assertEquals(1, producto.getTipo().getId());
     }
 
     @Test
@@ -67,39 +69,39 @@ public class ProductoTest {
     }
 
     @Test
-    void deberiaFallarSinIvaCompraDeProducto() {
+    void deberiaFallarSinPrecioCompraDeProducto() {
 
         // Arrange
-        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conIvaCompra(null);
+        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conPrecioCompra(null);
         // act-assert
         BasePrueba.assertThrows(() -> {
-            productoTestDataBuilder.build();
-        },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el iva de compra del producto");
+                    productoTestDataBuilder.build();
+                },
+                ExcepcionValorObligatorio.class, "Se debe ingresar el precio de compra del producto");
     }
 
     @Test
-    void deberiaFallarSinPrecioVentaDeProducto() {
+    void deberiaFallarConPrecioDeCompraNegativo() {
 
         // Arrange
-        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conPrecioVenta(null);
+        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conPrecioCompra(-5000f);
         // act-assert
         BasePrueba.assertThrows(() -> {
-            productoTestDataBuilder.build();
-        },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el precio de venta del producto");
+                    productoTestDataBuilder.build();
+                },
+                ExcepcionValorInvalido.class, "Se debe ingresar un valor positivo");
     }
 
     @Test
-    void deberiaFallarSinIvaVentaDeProducto() {
+    void deberiaFallarConCantidadDisponibleNegativo() {
 
         // Arrange
-        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conIvaVenta(null);
+        ProductoTestDataBuilder productoTestDataBuilder = new ProductoTestDataBuilder().conCantidadDisponible(-1000);
         // act-assert
         BasePrueba.assertThrows(() -> {
-            productoTestDataBuilder.build();
-        },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el iva de venta del producto");
+                    productoTestDataBuilder.build();
+                },
+                ExcepcionValorInvalido.class, "Se debe ingresar un valor positivo");
     }
 
     @Test
@@ -124,6 +126,42 @@ public class ProductoTest {
             productoTestDataBuilder.build();
         },
                 ExcepcionValorObligatorio.class, "Se debe ingresar la fecha");
+    }
+
+    @Test
+    @DisplayName("Deberia validar el calculo del iva para producto no excluido")
+    void deberiaValidarCalculoIvaProductoNoExcluido() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conTipo(1).build();
+        // act
+        Float iva = producto.calcularIVA(producto.getPrecioCompra(), producto.getTipo().getId());
+        // - assert
+        assertEquals(producto.getIvaCompra(), iva);
+    }
+
+    @Test
+    @DisplayName("Deberia validar el calculo del iva para producto excluido")
+    void deberiaValidarCalculoIvaProductoExcluido() {
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().conTipo(2).build();
+        // act
+        Float iva = producto.calcularIVA(producto.getPrecioCompra(), producto.getTipo().getId());
+        // - assert
+        assertEquals(0, iva);
+    }
+
+    @Test
+    @DisplayName("Deberia validar el calculo del precio de venta")
+    void deberiaValidarCalculoPrecioVentaProducto() {
+
+        // arrange
+        Producto producto = new ProductoTestDataBuilder().build();
+
+        // act
+        Float precioVenta = producto.calcularPrecioVentaProducto(producto.getPrecioCompra(), producto.getPorcentajeGanancia());
+
+        // assert
+        assertEquals(producto.getPrecioVenta(), precioVenta);
     }
 
 }
