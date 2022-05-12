@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 public class RepositorioProductoMysql implements RepositorioProducto {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-    private static final String REFERENCIA = "referencia";
 
     @SqlStatement(namespace="producto", value="crear")
     private static String sqlCrear;
@@ -35,19 +34,7 @@ public class RepositorioProductoMysql implements RepositorioProducto {
 
     @Override
     public void crear(Producto producto) {
-
-        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-        namedParameters.addValue("id", producto.getId());
-        namedParameters.addValue("nombre", producto.getNombre());
-        namedParameters.addValue(REFERENCIA, producto.getReferencia() );
-        namedParameters.addValue("precioCompra", producto.getPrecioCompra() );
-        namedParameters.addValue("ivaCompra", producto.getIvaCompra() );
-        namedParameters.addValue("porcentajeGanancia", producto.getPorcentajeGanancia() );
-        namedParameters.addValue("precioVenta", producto.getPrecioVenta() );
-        namedParameters.addValue("ivaVenta", producto.getIvaVenta() );
-        namedParameters.addValue("cantidadDisponible", producto.getCantidadDisponible() );
-        namedParameters.addValue("tipo", producto.getTipo().getId() );
-
+        MapSqlParameterSource namedParameters = crearParametros(producto);
         this.customNamedParameterJdbcTemplate.crear(namedParameters, sqlCrear);
     }
 
@@ -62,26 +49,14 @@ public class RepositorioProductoMysql implements RepositorioProducto {
     @Override
     public boolean existe(String ref) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue(REFERENCIA, ref);
+        paramSource.addValue("referencia", ref);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Producto producto) {
-
-        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-        namedParameters.addValue("id", producto.getId());
-        namedParameters.addValue("nombre", producto.getNombre());
-        namedParameters.addValue(REFERENCIA, producto.getReferencia() );
-        namedParameters.addValue("precioCompra", producto.getPrecioCompra() );
-        namedParameters.addValue("ivaCompra", producto.getIvaCompra() );
-        namedParameters.addValue("porcentajeGanancia", producto.getPorcentajeGanancia() );
-        namedParameters.addValue("precioVenta", producto.getPrecioVenta() );
-        namedParameters.addValue("ivaVenta", producto.getIvaVenta() );
-        namedParameters.addValue("cantidadDisponible", producto.getCantidadDisponible() );
-        namedParameters.addValue("tipo", producto.getTipo().getId() );
-
+        MapSqlParameterSource namedParameters = crearParametros(producto);
         this.customNamedParameterJdbcTemplate.actualizar(namedParameters, sqlActualizar);
     }
 
@@ -91,5 +66,21 @@ public class RepositorioProductoMysql implements RepositorioProducto {
         paramSource.addValue("id", id);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,paramSource, Boolean.class);
+    }
+
+    public MapSqlParameterSource crearParametros(Producto producto){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("id", producto.getId());
+        namedParameters.addValue("nombre", producto.getNombre());
+        namedParameters.addValue("referencia", producto.getReferencia() );
+        namedParameters.addValue("precioCompra", producto.getPrecioCompra() );
+        namedParameters.addValue("ivaCompra", producto.getIvaCompra() );
+        namedParameters.addValue("porcentajeGanancia", producto.getPorcentajeGanancia() );
+        namedParameters.addValue("precioVenta", producto.getPrecioVenta() );
+        namedParameters.addValue("ivaVenta", producto.getIvaVenta() );
+        namedParameters.addValue("cantidadDisponible", producto.getCantidadDisponible() );
+        namedParameters.addValue("tipo", producto.getTipo().getId() );
+
+        return  namedParameters;
     }
 }
