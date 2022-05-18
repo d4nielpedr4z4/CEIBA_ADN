@@ -11,4 +11,10 @@ public interface DaoProducto {
      * @return los productos
      */
     List<DtoProducto> listar();
+
+    /**
+     * Permite obtner un producto por id
+     * @return un producto
+     */
+    List<DtoProducto> obtenerPorId(Long id);
 }

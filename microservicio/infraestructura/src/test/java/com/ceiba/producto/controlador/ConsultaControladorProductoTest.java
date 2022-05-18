@@ -41,5 +41,22 @@ class ConsultaControladorProductoTest {
 
     }
 
+    @Test
+    @DisplayName("Deberia obtener un producto por id")
+    void deberiaObtenerProductoPorId() throws Exception {
+        // arrange
+        Long id = 1L;
+        // act - assert
+        mocMvc.perform(get("/productos/producto/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].nombre", is("test")))
+                .andExpect(jsonPath("$[0].id", is(1)));
+
+    }
+
+
+
 
 }

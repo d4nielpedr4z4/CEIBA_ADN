@@ -5,6 +5,7 @@ import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -21,15 +22,15 @@ class ProductoTest {
         // act
         Producto producto = new ProductoTestDataBuilder().build();
         // assert
-        assertEquals(10, producto.getId());
-        assertEquals("Audifonos Trust Gaming", producto.getNombre());
-        assertEquals("ZIVA", producto.getReferencia());
-        assertEquals(26550F, producto.getPrecioCompra());
-        assertEquals(5044.5F, producto.getIvaCompra());
-        assertEquals(10, producto.getPorcentajeGanancia());
-        assertEquals(29500F, producto.getPrecioVenta());
-        assertEquals(5605F, producto.getIvaVenta());
-        assertEquals(1, producto.getTipo().getId());
+        Assertions.assertEquals(10, producto.getId());
+        Assertions.assertEquals("Audifonos Trust Gaming", producto.getNombre());
+        Assertions.assertEquals("ZIVA", producto.getReferencia());
+        Assertions.assertEquals(26550F, producto.getPrecioCompra());
+        Assertions.assertEquals(5044.5F, producto.getIvaCompra());
+        Assertions.assertEquals(10, producto.getPorcentajeGanancia());
+        Assertions.assertEquals(29500F, producto.getPrecioVenta());
+        Assertions.assertEquals(5605F, producto.getIvaVenta());
+        Assertions.assertEquals(1, producto.getTipo().getId());
     }
 
     @Test
@@ -136,7 +137,7 @@ class ProductoTest {
         // act
         Float iva = producto.calcularIVA(producto.getPrecioCompra(), producto.getTipo().getId());
         // - assert
-        assertEquals(producto.getIvaCompra(), iva);
+        Assertions.assertEquals(producto.getIvaCompra(), iva);
     }
 
     @Test
@@ -147,7 +148,7 @@ class ProductoTest {
         // act
         Float iva = producto.calcularIVA(producto.getPrecioCompra(), producto.getTipo().getId());
         // - assert
-        assertEquals(0, iva);
+        Assertions.assertEquals(0, iva);
     }
 
     @Test
@@ -161,7 +162,7 @@ class ProductoTest {
         Float precioVenta = producto.calcularPrecioVentaProducto(producto.getPrecioCompra(), producto.getPorcentajeGanancia());
 
         // assert
-        assertEquals(producto.getPrecioVenta(), precioVenta);
+        Assertions.assertEquals(producto.getPrecioVenta(), precioVenta);
     }
 
 }

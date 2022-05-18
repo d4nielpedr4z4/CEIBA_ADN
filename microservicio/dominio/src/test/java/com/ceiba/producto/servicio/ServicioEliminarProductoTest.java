@@ -12,11 +12,9 @@ public class ServicioEliminarProductoTest {
     void deberiaEliminarElProductoLlamandoAlRepositorio() {
         RepositorioProducto repositorioProducto = Mockito.mock(RepositorioProducto.class);
         ServicioEliminarProducto servicioEliminarProducto = new ServicioEliminarProducto(repositorioProducto);
-
+        Mockito.when(repositorioProducto.existePorId(Mockito.anyLong())).thenReturn(true);
         servicioEliminarProducto.ejecutar(10l);
-
         Mockito.verify(repositorioProducto, Mockito.times(1)).eliminar(10l);
-
     }
 
 }

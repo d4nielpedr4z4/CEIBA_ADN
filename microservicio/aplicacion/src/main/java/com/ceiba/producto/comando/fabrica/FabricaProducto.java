@@ -16,7 +16,7 @@ public class FabricaProducto {
                 comandoProducto.getReferencia(),
                 comandoProducto.getPrecioCompra(),
                 comandoProducto.getPorcentajeGanancia(),
-                comandoProducto.getCantidadDisponible(),
+                comandoProducto.getCantidad(),
                 new Tipo(comandoProducto.getTipo()),
                 comandoProducto.getFecha());
     }

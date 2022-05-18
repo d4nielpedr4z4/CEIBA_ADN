@@ -1,0 +1,1 @@
+select producto.id as id_producto, producto.nombre, referencia, precio_compra, iva_compra, porcentaje_ganancia, precio_venta, iva_venta, cantidad_disponible, id_tipo, tipo.id as tipo, tipo.nombre as nombre_tipo from producto left join tipo on producto.id_tipo = tipo.id where producto.id = :id;
